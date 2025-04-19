@@ -40,29 +40,25 @@ export default {
         };
     },
     methods: {
+        // Fetch surveys from the server
         getSurveys() {
-            SurveyService.getSurveys()
-                .then(response => {
-                    this.surveys = response.data;
-                })
-                .catch(error => {
-                    alert('Error fetching surveys:', error);
-                });
+            SurveyService.getSurveys().then(response => {
+                this.surveys = response.data;
+            });
         },
+        // Redirect to the update survey page
         updateSurvey(id) {
             this.$router.push('/survey/' + id);
         },
+        // Delete survey
         deleteSurvey(id) {
-            SurveyService.deleteSurvey(id)
-                .then(() => {
-                    this.getSurveys();
-                })
-                .catch(error => {
-                    alert('Error deleting survey:', error);
-                });
+            SurveyService.deleteSurvey(id).then(() => {
+                this.getSurveys();
+            });
         }
     },
     created() {
+        // Fetch the surveys when the component is created
         this.getSurveys();
     }
 }

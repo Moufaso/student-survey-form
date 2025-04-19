@@ -73,7 +73,7 @@
         <!-- Additional Comments -->
         <fieldset class="row g-3 col-md-6">
             <legend>Additional Comments</legend>
-            <textarea class=" form-control" name="comment" id="comment" placeholder="Enter your comments here..." style="height: 100px"></textarea>
+            <textarea class=" form-control" name="comment" id="comment" placeholder="Enter your comments here..." style="height: 100px" v-model="form.comment"></textarea>
         </fieldset>
         <!-- Buttons -->
         <div class="buttons">
@@ -128,6 +128,7 @@ export default {
         }
     },
     created() {
+        // If id is passed, fetch the survey data
         if(this.id) {
             SurveyService.getSurvey(this.id).then(response => {
                 this.form = response.data;
